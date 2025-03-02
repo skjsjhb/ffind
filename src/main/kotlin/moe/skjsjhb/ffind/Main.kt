@@ -5,6 +5,17 @@ package moe.skjsjhb.ffind
 @Suppress("UNCHECKED_CAST")
 fun main() {
     runCatching {
+        val mcVersion = System.getProperty("ffind.mcv");
+
+        if (mcVersion != null) {
+            runCatching {
+                val fmlInjectionDataClazz = Class.forName("cpw.mods.fml.relauncher.FMLInjectionData");
+                val mccversionField = fmlInjectionDataClazz.getDeclaredField("mccversion");
+                mccversionField.isAccessible = true;
+                mccversionField.set(null, mcVersion);
+            }
+        }
+
         val relaunchLibraryManagerClazz = Class.forName("cpw.mods.fml.relauncher.RelaunchLibraryManager")
         val rootPluginsField = relaunchLibraryManagerClazz.getDeclaredField("rootPlugins");
         rootPluginsField.isAccessible = true;

@@ -1,24 +1,24 @@
 plugins {
-    kotlin("jvm") version "2.1.10"
+    java
 }
 
 group = "moe.skjsjhb"
-version = "1.1"
+version = "1.2"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 
-kotlin {
-    jvmToolchain(8)
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks {
